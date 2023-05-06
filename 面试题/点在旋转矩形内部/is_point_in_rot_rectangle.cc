@@ -38,7 +38,7 @@ double CalculateTriangleArea(const Point& a, const Point& b, const Point& c){
     if((a.x == b.x && a.y == b.y )|| (a.x == c.x && a.y == c.y )|| (b.x == c.x && b.y == c.y)) return res;
     Vector2d ba(a.x -b.x, a.y - b.y);
     Vector2d bc(c.x -b.x, c.y - b.y);
-    res = (ba.x*bc.y - bc.x*ba.y) * 0.5;
+    res = fabs(ba.x*bc.y - bc.x*ba.y) * 0.5;
     return res;
 }
 
