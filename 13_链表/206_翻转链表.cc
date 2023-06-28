@@ -13,6 +13,7 @@ struct ListNode{
     ListNode(int value): val(value), next(nullptr){}
 };
 
+// 非递归做法
 ListNode* reverseList(ListNode* head) {
   if (head == nullptr) return nullptr;
   ListNode *cur = head->next, *prev = head;
@@ -27,6 +28,14 @@ ListNode* reverseList(ListNode* head) {
     cur = next;
   }
   return prev;
+}
+
+// 递归做法
+ListNode* reverseList(ListNode* head, ListNode* prev = nullptr) {
+    if(head == nullptr) return prev;
+    ListNode * next = head->next;
+    head->next = prev;
+    return reverseList(next, head);
 }
 
 int main(){
@@ -44,7 +53,9 @@ int main(){
     }
     std::cout << std::endl;
 
-    auto reverse_head = reverseList(head);
+    // auto reverse_head = reverseList(head);
+    ListNode* prev = nullptr;
+    auto reverse_head = reverseList(head, prev);
     std::cout << "reverse: ";
     while(reverse_head){
         std::cout << reverse_head->val << ",";
